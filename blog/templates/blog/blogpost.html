@@ -1,0 +1,39 @@
+{% extends 'blog/basic.html'%}
+
+
+{%block title%} blogpost {%endblock%}
+{%block body%}
+	<main role="main" class="container my-4">
+  <div class="row">
+    <div class="col-md-8 blog-main">
+      <h3 class="pb-4 mb-4 font-italic border-bottom">
+        From the Firehose
+      </h3>
+
+      <div class="blog-post">
+        <h2 class="blog-post-title">{{posts.id}}</h2>
+        <p class="blog-post-meta">{{posts.pub_date}} by <a href="#">Priyanshu</a></p>
+        <div class="fb-like" data-href="http://127.0.0.1:8000/blog/blogpost/{{posts.blogpost_id}}" data-width="" data-layout="button" data-action="like" data-size="large" data-share="true"></div>
+        <h2>{{posts.heading1}}</h2>
+        <p>{{posts.content1}}</p>
+        
+        <h3>{{posts.head2}}</h3>
+        
+        <pre><code>{{posts.con2}}</code></pre>
+        
+        <h3>{{posts.hrad3}}</h3>
+        <p>{{posts.con3}}</p>
+        
+      
+      </div><!-- /.blog-post -->
+
+      
+
+<div class="fb-comments" data-href="http://127.0.0.1:8000/blog/blogpost/{{posts.blogpost_id}} " data-numposts="5" data-width=""></div>
+
+  </div><!-- /.row -->
+
+</main>
+
+
+{%endblock%}

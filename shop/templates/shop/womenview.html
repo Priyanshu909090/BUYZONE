@@ -1,0 +1,98 @@
+{% extends 'shop/basic.html'%}
+
+{%block title%} {{womenproduct.product_name}} {%endblock%}
+
+
+{%block css%}
+.center{
+  text-align:center;
+}
+.list{
+
+        list-style:none;
+
+      }
+      .list a{
+      color:white;
+    }
+    .footer{
+    background-color:#494747;
+  }
+
+{%endblock%}
+{%block body%}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-4">
+      <div id = "wimgpr{{womenproduct.women_id}}" class="imgpr">
+        <img src="/media/{{womenproduct.image}}"  style="width:333px; height:333px;" >
+      </div>
+      <div class="container"><span id="womenpr{{i.women_id}}" class="womenpr">
+                    <button id="wpr{{i.women_id}}" class="btn btn-primary cart my-4">Add To Cart</button>
+                </span>
+                <a href="/shop/cart/"><button class="btn btn-primary my-4 mx-4">Buy Now</button></a></div>
+    </div>
+    <div class="col-sm-12 col-md-8 ">
+<!--        Product Details here -->
+        <div class="container">
+          <h2>{{womenproduct.product_name}}</h2>
+          <hr>
+            <div class="container">
+              <h3 style="color:red;" ><b style="color:black;">MRP:   </b><span style="color:black;">Rs.</span> {{womenproduct.product_price}}</h3>
+                <h4 style="text-decoration:line-through; color:red;"><b style="color:black;">Actual Price: </b><span style="color:black;">Rs.</span>   {{womenproduct.actual_price}}</h4>
+              </div>
+          <hr>
+          <div>
+          <h1>Description</h1>
+          <p>{{womenproduct.product_description}}</p>
+            <hr>
+          </div>
+        </div>
+    </div>
+    
+
+
+  </div>
+
+
+
+</div>
+<div class="container-fluid center my-4" >
+  <h1>More Items To Discover</h1>
+
+</div>
+
+
+<div class="footer my-4">
+    <div class="container-fluid" style="margin-top: 234px;">
+
+        <div class="row row-cols-1 row-cols-md-3">
+  <div class="col mb-4 col-sm-12">
+      <ul>
+          <h4 style="color: white; " class="my-4">Shop By Category</h4>
+          <li class="list"><a href="/shop">Home</a></li>
+          <li class="list"><a href="/shop/contact">Contact Us</a></li>
+          <li class="list"><a href="/shop/about">About Us</a></li>
+          <li class="list"><a href="/shop/checkout">Buy</a> </li>
+      </ul>
+  </div>
+  <div class="col mb-4 col-sm-12 ">
+    <form action="/shop" method="post">{% csrf_token %}
+    <label for="email" id="email" style="color: white;" class="my-4"> Enter Your Email Address:</label>
+    <br>
+    <input type="email" name="email" placeholder="Enter your Email" style="width: 450px;">
+    <button type="Submit" class="btn btn-outline-secondary my-4">Submit</button>
+    </form>
+  </div>
+  <div class="col mb-4 col-sm-12 my-4" style="color: white;">
+      <h3 style="color: white;">Details</h3>
+      <b> Contact No. - </b><p>+91 6355007117</p>
+      <b>Email Address - </b><p>priyanshumalaviya17@gmail.com</p>
+    </div>
+  </div>
+
+</div>
+    </div>
+
+</div>
+{%endblock%}

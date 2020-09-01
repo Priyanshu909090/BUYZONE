@@ -1,0 +1,91 @@
+{% extends 'shop/basic.html'%}
+
+{%block title%} index about {%endblock%}
+{%block css%} 
+
+.list{
+
+        list-style:none;
+
+      }
+      .list a{
+      color:white;
+    }
+    .footer{
+    background-color:#494747;
+  }
+  
+
+{%endblock%}
+
+{%block body%}
+    <main role="main">
+
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <div class="jumbotron">
+            <div class="container">
+                <h1 class="display-3">About Us</h1>
+                <p>Buyzon are the world's best and the fast growing company who is actually looking at the best customer experience and providing a high quality services and products all across India and we are proud to have a more than 100 million user who are using our website and we are helping more than million sellers to sell their products online in our site. </p>
+
+            </div>
+        </div>
+
+        <div class="container">
+            <!-- Example row of columns -->
+            <div class="row">
+                <div class="col-md-4">
+                    <h2>Fastest Customer Servises </h2>
+                    <p>Buyzon currenty have the world's fastest delivery services who are delivering your producsts in justa a few days in working hours. We glad that we are providing more than 2 million delivery boys employment which is a hugh amount and we are also give quality in the services. </p>
+
+                </div>
+                <div class="col-md-4">
+                    <h2>Quality of The Product</h2>
+                    <p>Buyzon have morev than 200k products in our websites by different sellers and we are providing a very great quality products in just few days with customer support.</p>
+
+                </div>
+                <div class="col-md-4">
+                    <h2>Cash On Delivery Service </h2>
+                    <p>Buyzon have both online and cash on delivery service payments options for the customers convenients and we would also provide you a EMI option for the very large value items so that customer can get better user experience at their home without having problems of money. </p>
+
+                </div>
+            </div>
+
+            <hr>
+
+        </div> <!-- /container -->
+
+    </main>
+    <div class="footer my-4">
+    <div class="container-fluid" style="margin-top: 234px;">
+
+        <div class="row row-cols-1 row-cols-md-3">
+  <div class="col mb-4 col-sm-12">
+      <ul>
+          <h4 style="color: white; " class="my-4">Shop By Category</h4>
+          <li class="list"><a href="/shop">Home</a></li>
+          <li class="list"><a href="/shop/contact">Contact Us</a></li>
+          <li class="list"><a href="/shop/about">About Us</a></li>
+          <li class="list"><a href="/shop/checkout">Buy</a> </li>
+      </ul>
+  </div>
+  <div class="col mb-4 col-sm-12 ">
+    <form action="/shop" method="post">{% csrf_token %}
+    <label for="email" id="email" style="color: white;" class="my-4"> Enter Your Email Address:</label>
+    <br>
+    <input type="email" name="email" placeholder="Enter your Email" style="width: 450px;">
+    <button type="Submit" class="btn btn-outline-secondary my-4">Submit</button>
+    </form>
+  </div>
+  <div class="col mb-4 col-sm-12 my-4" style="color: white;">
+      <h3 style="color: white;">Details</h3>
+      <b> Contact No. - </b><p>+91 6355007117</p>
+      <b>Email Address - </b><p>priyanshumalaviya17@gmail.com</p>
+    </div>
+  </div>
+
+</div>
+    </div>
+
+</div>
+
+{%endblock%}

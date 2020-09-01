@@ -1,0 +1,61 @@
+{% extends 'shop/basic.html'%}
+{%block title%} kid's wear {%endblock%}
+{% block css%}
+
+   .w-100 {
+      width: 100%!important;
+      height: 611px;
+    }
+    .center{
+    display:flex;
+
+    text-align:center;
+	justify-content:center;
+	item-align:center;
+    }
+
+
+{% endblock%}
+
+{% block body %}
+	
+	<div class="container my-4">
+{% for kidsproduct, range in allkidProd%}
+		<div class="row row-cols-2 row-col-sm-6 row-cols-md-4 row-col-xs-4 ">
+
+	       {% for i in kidsproduct %}
+	        <div class="col-xs-4 col-sm-12 col-md-4 center" >
+	          <a href="/shop/kidview/{{i.kid_id}}"  style="color:black; text-decoration:none;"><div class="card" style="width: 18rem;">
+	            <img src='/media/{{i.image}}' style="  height: 350px;" class="card-img-top" alt="...">
+	            <div class="card-body">
+	                <h6 class="card-title center" id="kpricepr{{i.kid_id}}">MRP: Rs.<span style="color:red" > {{i.product_price}}</span></h6>
+	              <h5 class="card-title center" id="kidnpr{{i.kid_id}}">{{i.product_name|slice:"0:25"}}..</h5>
+	                </a>
+	              <p class="card-text center">{{i.product_description|slice:"0:50"}}...</p>
+	                <span id="kidpr{{i.kid_id}}" class="kidpr">
+	                    <button id="kid{{i.kid_id}}" class="btn btn-primary cart center">Add To Cart</button>
+	                </span>
+	            </div>
+
+
+	          </div>
+
+	        </div>
+	        {% if forloop.counter|divisibleby:4 and forloop.counter > 0 and not forloop.last %}
+	      </div><div class="row row-cols-2 row-col-sm-6 row-cols-md-3">
+	        {% endif %}
+
+	        {% endfor %}
+	    </div>
+  
+{% endfor%}
+	</div>
+
+
+
+
+
+
+
+
+{% endblock%}

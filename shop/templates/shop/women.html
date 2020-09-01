@@ -1,0 +1,61 @@
+{% extends 'shop/basic.html'%}
+{%block title%} women's wear {%endblock%}
+{% block css%}
+
+   .w-100 {
+      width: 100%!important;
+      height: 611px;
+    }
+    .center{
+    display:flex;
+
+    text-align:center;
+	justify-content:center;
+	item-align:center;
+    }
+
+
+{% endblock%}
+
+{% block body %}
+	
+	<div class="container my-4">
+{% for womenproduct, range in allwomenProd%}
+		<div class="row row-cols-2 row-col-sm-6 row-cols-md-3 row-col-xs-4  ">
+
+	       {% for i in womenproduct %}
+	        <div class="col-xs-4 col-sm-12 col-md-4 center" >
+	          <a href="/shop/womenview/{{i.women_id}}"  style="color:black; text-decoration:none;"><div class="card" style="width: 18rem;">
+	            <img src='/media/{{i.image}}' style="  height: 350px;" class="card-img-top" alt="...">
+	            <div class="card-body">
+	                <h6 class="card-title center" id="wpricepr{{i.women_id}}">MRP: Rs.<span style="color:red" > {{i.product_price}}</span></h6>
+	              <h5 class="card-title center" id="wnamepr{{i.women_id}}">{{i.product_name|slice:"0:25"}}..</h5>
+	                </a>
+	              <p class="card-text center">{{i.product_description|slice:"0:50"}}...</p>
+	                <span id="womenpr{{i.women_id}}" class="womenpr">
+	                    <button id="wpr{{i.women_id}}" class="btn btn-primary cart center">Add To Cart</button>
+	                </span>
+	            </div>
+
+
+	          </div>
+
+	        </div>
+	        {% if forloop.counter|divisibleby:4 and forloop.counter > 0 and not forloop.last %}
+	      </div><div class="row row-cols-2 row-col-sm-6 row-cols-md-3">
+	        {% endif %}
+
+	        {% endfor %}
+	    </div>
+  
+{% endfor%}
+	</div>
+
+
+
+
+
+
+
+
+{% endblock%}

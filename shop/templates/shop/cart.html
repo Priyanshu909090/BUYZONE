@@ -1,0 +1,160 @@
+{% extends 'shop/basic.html'%}
+
+{%block title%} index cart {%endblock%}
+
+
+{%block body%}
+    
+		<div class="container my-4" >
+			
+		<h2>Step - 2 : Enter Your Personal Details</h2>
+			<div class="col">
+				<form method="post" action="/shop/">{% csrf_token%}
+					<input type="hidden" name="itemsJson" id="itemsJson">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Email</label>
+      <input type="email" class="form-control" id="inputEmail4" name="email">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" name="name">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputAddress">Address</label>
+    <input type="text" class="form-control" id="inputAddress" name="address" placeholder="1234 Main St">
+  </div>
+  <div class="form-group">
+    <label for="inputAddress2">Address Line 2</label>
+    <input type="text" class="form-control" id="inputAddress2" name="address2 " placeholder="Apartment, studio, or floor">
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputCity">City</label>
+      <input type="text" class="form-control" name="city" id="inputCity">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputState">State </label>
+      <br>
+      <input type="text" class="form-control" name="state" id="inputState">
+    </div>
+    <div class="form-group col-md-2">
+      <label for="inputZip">Zip Code</label>
+      <input type="text" class="form-control"  name="zip_code"id="inputZip">
+    </div>
+  </div>
+  <div class="form-group">
+    
+      <label class="inputphone" for="phone">
+        Phone Number 
+      </label>
+      <br>
+      <input class="inputphone" style="width: 444px"type="tel" id="phone" name="phone" placeholder="Enter your Phone Number">
+    
+  </div>
+  <button type="submit" class="btn btn-success">Place Order</button>
+</form>
+			</div>
+		</div>
+
+	</div>
+<div class="footer my-4">
+    <div class="container-fluid" style="margin-top: 234px;">
+
+        <div class="row row-cols-1 row-cols-md-3">
+  <div class="col mb-4 col-sm-12">
+      <ul>
+          <h4 style="color: white; " class="my-4">Shop By Category</h4>
+          <li class="list"><a href="/shop">Home</a></li>
+          <li class="list"><a href="/shop/contact">Contact Us</a></li>
+          <li class="list"><a href="/shop/about">About Us</a></li>
+          <li class="list"><a href="/shop/checkout">Buy</a> </li>
+      </ul>
+  </div>
+  <div class="col mb-4 col-sm-12 ">
+    <form action="/shop" method="post">{% csrf_token %}
+    <label for="email" id="email" style="color: white;" class="my-4"> Enter Your Email Address:</label>
+    <br>
+    <input type="email" name="email" placeholder="Enter your Email" style="width: 450px;">
+    <button type="Submit" class="btn btn-outline-secondary my-4">Submit</button>
+    </form>
+  </div>
+  <div class="col mb-4 col-sm-12 my-4" style="color: white;">
+      <h3 style="color: white;">Details</h3>
+      <b> Contact No. - </b><p>+91 6355007117</p>
+      <b>Email Address - </b><p>priyanshumalaviya17@gmail.com</p>
+    </div>
+  </div>
+
+</div>
+    </div>
+
+</div>
+
+{%endblock%}
+
+{% block js%}
+<script >
+
+  
+if (localStorage.getItem('cart') == null) {
+    var cart = {};
+} else {
+    cart = JSON.parse(localStorage.getItem('cart'));
+}
+console.log(cart);
+var sum = 0;
+if ($.isEmptyObject(cart)) {
+    //if object is empty
+    mystr = `<p>Your cart is empty, please add some items to your cart before checking out!</p>`
+    $('#items').append(mystr);
+} else {
+    for (item in cart) {
+        let name = cart[item][1];
+        let qty = cart[item][0];
+        let price = cart[item][2];
+  //       let price = document.getElementsById('price'+item).innerHTML;
+    // let image = document.getElementsById('img'+ item).innerHTML;
+        sum = sum + qty;
+        mystr = `<div class=" d-flex justify-content-between align-items-center">
+      <div class="container">
+        <div class="row">
+          
+          <div class="col-sm-8 col-md-8" >
+            <h4>${name}</h4>
+            <p>  ${price} <p> 
+            
+            <div>
+              <span id="div${item}" class="divpr">
+                        <button id="${item}" class="btn btn-primary cart">Add To Cart</button>
+                    </span>
+            </div>
+
+
+          </div>
+          <div class="col-sm-4 col-md-4">
+            <h5> Qty :</h5>
+            <p> ${qty} </p>
+          </div>
+        </div>
+      </div>
+    
+  
+    </div>
+    <hr>
+    `
+        $('#items').append(mystr);
+    }
+}
+document.getElementById('cart').innerHTML = sum;
+
+$('#itemsJson').val(JSON.stringify(cart));
+{% if thank %}
+alert('Thanks for ordering with us. Your order is is {{id}}. Use it to track your order using our order tracker');
+localStorage.clear();
+document.location = "/shop";
+{% endif %}
+</script>
+</script>
+{% endblock %}
